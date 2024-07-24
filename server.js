@@ -12,6 +12,7 @@ dotenv.config();
 connectDb();
 
 const app = express();
+const __dirname = path.resolve();
 
 //middlewares:
 app.use(cors());
@@ -29,7 +30,7 @@ app.use("/api/v1/product", productRoutes);
 //static files:
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.get("*", (req, res) => {
+app.use("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
