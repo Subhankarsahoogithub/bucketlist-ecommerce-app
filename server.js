@@ -30,8 +30,8 @@ app.use("/api/v1/product", productRoutes);
 //static files:
 app.use(express.static(path.join(__dirname, "./client/build")));
 
-app.use("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+app.get("*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
 });
 
 const PORT = process.env.PORT || 8080;
